@@ -17,3 +17,18 @@ describe('checkAmount', () => {
     expect(checkAmount(cidExample)).toBe(expectedTotalAmount);
   });
 });
+
+
+////////////////////////////
+
+const { checkTotalChange } = require('./cashRegister');
+
+describe('checkTotalChange', () => {
+  test('calculates total change correctly', () => {
+    const price = 19.5;
+    const cash = 20;
+    const expectedChange = 0.5; // This is the expected change for the given price and cash
+    expect(checkTotalChange(price, cash)).toBe(expectedChange);
+  });
+});
+

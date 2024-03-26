@@ -26,19 +26,12 @@ function checkAmount(cid){
     }
     return Number(totalAmount.toFixed(2)); // Convertir a número después de limitar a dos decimales
 }
-module.exports = { checkAmount };
 
-const cidExample = [
-    ["PENNY", 1.01],
-    ["NICKEL", 2.05],
-    ["DIME", 3.1],
-    ["QUARTER", 4.25],
-    ["ONE", 90],
-    ["FIVE", 55],
-    ["TEN", 20],
-    ["TWENTY", 60],
-    ["ONE HUNDRED", 100]
-];
 
-checkAmount(cidExample); // 335.41
-console.log(checkAmount(cidExample));
+
+//2. Calculate the change to give back
+function checkTotalChange(price, cash){
+    return cash - price;
+}
+
+module.exports = { checkTotalChange, checkAmount };

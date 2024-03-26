@@ -1,12 +1,12 @@
-// function checkCashRegister(price, cash, cid) {
-//     let change;
-//     return change;
-//   }
+function checkCashRegister(price, cash, cid) {
+    let change;
+    return change;
+  }
 
-//   checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
+  checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
 
 
-// Calcule the amount disponible on the cash register
+//1. Calcule the amount disponible on the cash register
 
 function checkAmount(cid){
     const currencyUnits = {
@@ -24,8 +24,9 @@ function checkAmount(cid){
     for(let i = 0; i < cid.length; i++){
         totalAmount += cid[i][1];
     }
-    return totalAmount;
+    return Number(totalAmount.toFixed(2)); // Convertir a número después de limitar a dos decimales
 }
+module.exports = { checkAmount };
 
 const cidExample = [
     ["PENNY", 1.01],

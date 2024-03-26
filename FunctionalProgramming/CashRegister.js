@@ -30,8 +30,28 @@ function checkAmount(cid){
 
 
 //2. Calculate the change to give back
-function checkTotalChange(price, cash){
-    return cash - price;
+function checkTotalChange(price, cash) {
+    const change = cash - price;
+    return parseFloat(change.toFixed(2));
 }
 
-module.exports = { checkTotalChange, checkAmount };
+
+//3. Check if the cash register has enough money to give back the change and return the message
+function compareTotalAndDrawer(price,cash, cid) {
+    
+    const totalChange = checkTotalChange(price, cash);
+    const totalDrawer = checkAmount(cid);
+
+    // Comparar el total de cambio con el total de dinero en el cajón
+    if (totalChange > totalDrawer) {
+        return { status: "INSUFFICIENT_FUNDS", change: [] };
+    } else if (totalChange === totalDrawer) {
+        return { status: "CLOSED", change: cid };
+    } else {
+        return { status: "OPEN", change: [] };
+    }
+}
+
+
+
+module.exports = { checkTotalChange, checkAmount , compareTotalAndDrawer};

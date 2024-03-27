@@ -95,3 +95,40 @@ describe('compareTotalAndDrawer', () => {
       expect(result).toEqual({ status: "OPEN", change: [] });
     });
   });
+
+  const { calculateCoinCounts } = require('./cashRegister'); // Ajusta el nombre del archivo según corresponda
+
+describe('calculateCoinCounts', () => {
+  test('calculates coin counts correctly', () => {
+    // Define los datos de prueba
+    const amount = 5.76;
+    const currencyUnits = {
+      "PENNY": 0.01,
+      "NICKEL": 0.05,
+      "DIME": 0.1,
+      "QUARTER": 0.25,
+      "ONE": 1,
+      "FIVE": 5,
+      "TEN": 10,
+      "TWENTY": 20,
+      "ONE HUNDRED": 100
+    };
+
+    // Ejecuta la función a probar
+    const result = calculateCoinCounts(amount, currencyUnits);
+
+    console.log(result);
+    // Verifica si el resultado es el esperado
+    expect(result).toEqual([
+        { "TEN": 0 },
+        { "TWENTY": 0 },
+        { "ONE HUNDRED": 0 },
+        { "FIVE": 1 },
+        { "ONE": 5 },
+        { "QUARTER": 23 },
+        { "DIME": 57 },
+        { "NICKEL": 115 },
+        { "PENNY": 576 }
+        ]);
+    });
+});

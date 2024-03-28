@@ -1,9 +1,9 @@
-function checkCashRegister(price, cash, cid) {
-    let change;
-    return change;
-  }
+// function checkCashRegister(price, cash, cid) {
+//     let change;
+//     return change;
+//   }
 
-  checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
+//   checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
 
 
 const currencyUnits = {
@@ -15,7 +15,7 @@ const currencyUnits = {
     "FIVE": 5,
     "TEN": 10,
     "TWENTY": 20,
-    "ONE HUNDRED": 100
+    "ONEHUNDRED": 100
 };
 
 //1. Calcule the amount disponible on the cash register
@@ -80,13 +80,50 @@ function calculateCoinCounts(amount, currencyUnits) {
     }
         // Ordenamos el array resultante de menor a mayor valor
     result.sort((a, b) => Object.values(a)[0] - Object.values(b)[0]);
-    
+    return result;
+}
 
+//5. Check the number of coins in the cash register per unit
+function checkCoinCount(cid) {
+    const result = [];
+    for (let i = 0; i < cid.length; i++) {
+        result.push({ [cid[i][0]]: Math.floor(cid[i][1] / currencyUnits[cid[i][0]]) });
+    }
     return result;
 }
 
 
+function checkCashRegister(price, cash, cid) {
+    let totalChange = checkTotalChange(price, cash);
+    console.log("1.totalChange",totalChange);
+    const drawerStatus = compareTotalAndDrawer(price, cash, cid);
+    console.log("2.drawerStatus",drawerStatus);
+    const changeCombination = calculateCoinCounts(totalChange, currencyUnits);
+    console.log("3.changeCombination",changeCombination);
+    const availableCoins = checkCoinCount(cid);
+    console.log("4.availableCoins",availableCoins);
+    // Print values of availableCoins
+    console.log("avaible coin values", availableCoins[1]["PENNY"]); // Ejemplo para la moneda "PENNY"
+
+    const change = [];
+    
+    sumChange(availableCoins);
+
+        console.log("10.Change:", change);
+        return { status: "OPEN", change: change };
+    }
 
 
+checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONEHUNDRED", 100]]) 
+module.exports = { checkTotalChange, checkAmount , compareTotalAndDrawer , calculateCoinCounts ,checkCoinCount , checkCashRegister};
 
-module.exports = { checkTotalChange, checkAmount , compareTotalAndDrawer , calculateCoinCounts};
+
+function sumChange ( availableCoins ){
+    let sum = 0;
+    for (let i=0 ; i < availableCoins.length; i++){
+        for (let j=0 ; j < availableCoins[i].value; j++){
+            console.log("availableCoins[i].values", availableCoins[i]);
+    } 
+}
+    return sum;
+}

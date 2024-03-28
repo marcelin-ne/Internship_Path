@@ -117,7 +117,7 @@ describe('calculateCoinCounts', () => {
     // Ejecuta la función a probar
     const result = calculateCoinCounts(amount, currencyUnits);
 
-    console.log(result);
+    //console.log(result);
     // Verifica si el resultado es el esperado
     expect(result).toEqual([
         { "TEN": 0 },
@@ -130,5 +130,110 @@ describe('calculateCoinCounts', () => {
         { "NICKEL": 115 },
         { "PENNY": 576 }
         ]);
+    });
+});
+
+
+//////////////////////////
+
+const { checkCoinCount } = require('./cashRegister.js'); // Ajusta el nombre del archivo según corresponda
+
+describe('checkCoinCount', () => {
+  test('calculates coin count correctly', () => {
+    // Define los datos de prueba
+    const cid = [
+      ["PENNY", 1.01],
+      ["NICKEL", 2.00],
+      ["DIME", 3.1],
+      ["QUARTER", 4.25],
+      ["ONE", 90],
+      ["FIVE", 55],
+      ["TEN", 20],
+      ["TWENTY", 60],
+      ["ONE HUNDRED", 100]
+    ];
+
+    // Ejecuta la función a probar
+    const result = checkCoinCount(cid);
+    console.log(result);
+
+    // Verifica si el resultado es el esperado
+    expect(result).toEqual([
+      { "PENNY": 101 },
+      { "NICKEL": 40 },
+      { "DIME": 31 },
+      { "QUARTER": 17 },
+      { "ONE": 90 },
+      { "FIVE": 11 },
+      { "TEN": 2 },
+      { "TWENTY": 3 },
+      { "ONE HUNDRED": 1 }
+    ]);
+  });
+});
+
+////////////////////////////
+const {
+    checkCashRegister
+} = require('./cashRegister.js');
+
+describe('checkCashRegister', () => {
+    test('returns INSUFFICIENT_FUNDS if cash-in-drawer is less than the change due', () => {
+        const price = 19.5;
+        const cash = 100;
+        const cid = [
+            ["PENNY", 0.01],
+            ["NICKEL", 0.05],
+            ["DIME", 0.1],
+            ["QUARTER", 4.25],
+            ["ONE", 0],
+            ["FIVE", 0],
+            ["TEN", 0],
+            ["TWENTY", 0],
+            ["ONE HUNDRED", 0]
+        ];
+        console.log(checkAmount(cid));
+        expect(checkCashRegister(price, cash, cid)).toEqual({ status: "INSUFFICIENT_FUNDS", change: [] });
+    });
+
+    test('returns CLOSED if cash-in-drawer is equal to the change due', () => {
+        const price = 19.5;
+        const cash = 20;
+        const cid = [
+            ["PENNY", 0.15],
+            ["NICKEL", 0.15],
+            ["DIME", 0.2],
+            ["QUARTER", 0.00],
+            ["ONE", 0],
+            ["FIVE", 0],
+            ["TEN", 0],
+            ["TWENTY", 0],
+            ["ONE HUNDRED", 0]
+        ];
+        console.log(checkAmount(cid));
+        console.log(checkCashRegister(price, cash, cid));
+        expect(checkCashRegister(price, cash, cid)).toEqual({ status: "CLOSED", change: cid });
+    });
+
+    describe('checkCashRegister', () => {
+        test('returns OPEN and the change ', () => {
+            const price = 19.5;
+            const cash = 50;
+            const cid = [
+                ["PENNY", 1.01],
+                ["NICKEL", 2.05],
+                ["DIME", 3.1],
+                ["QUARTER", 4.25],
+                ["ONE", 90],
+                ["FIVE", 55],
+                ["TEN", 20],
+                ["TWENTY", 60],
+                ["ONE HUNDRED", 100]
+            ];
+            console.log(checkAmount(cid));
+            const result = checkCashRegister(price, cash, cid);
+            console.log(result);
+            expect(result).toEqual({ status: "OPEN", change: [["QUARTER", 0.5]] });
+        });
     });
 });

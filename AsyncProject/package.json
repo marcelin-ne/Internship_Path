@@ -1,0 +1,11 @@
+{
+  "name": "cat-facts",
+  "version": "1.0.0",
+  "description": "Connection de cat-facts API with Async function",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

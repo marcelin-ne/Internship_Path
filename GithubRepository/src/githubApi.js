@@ -40,6 +40,8 @@ class GitHubClient {
 
         try {
             const response = await fetch(`${this.baseUrl}/orgs/${orgName}/repos?per_page=${count}&sort=stars&direction=desc`, {
+                //No traer la data con sorting , solo la data de los repositorios para poner en los mocks 
+                // Y probar el metodo de getTopRepositories
                 headers: {
                     Authorization: `token ${this.token}`
                 }

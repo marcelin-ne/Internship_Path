@@ -25,7 +25,7 @@ describe('checkAmount', () => {
       ["TWENTY", 60],
       ["ONE HUNDRED", 100]
     ];
-    const expectedTotalAmount = 335.41; // This is the expected total amount in the cash drawer
+    const expectedTotalAmount = 33541; // This is the expected total amount in the cash drawer
     expect(checkAmount(cidExample)).toBe(expectedTotalAmount);
   });
 });

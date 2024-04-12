@@ -22,24 +22,38 @@ const currencyUnits = {
 
 function checkAmount(cid){
     const currencyUnits = {
-        "PENNY": 0.01,
-        "NICKEL": 0.05,
-        "DIME": 0.1,
-        "QUARTER": 0.25,
-        "ONE": 1,
-        "FIVE": 5,
-        "TEN": 10,
-        "TWENTY": 20,
-        "ONE HUNDRED": 100
+        "PENNY": 1,
+        "NICKEL": 5,
+        "DIME": 10,
+        "QUARTER": 25,
+        "ONE": 100,
+        "FIVE": 500,
+        "TEN": 1000,
+        "TWENTY": 2000,
+        "ONE HUNDRED": 10000
     };
     let totalAmount = 0;
     for(let i = 0; i < cid.length; i++){
+        cid[i][1] = cid[i][1] * 100; // Convertir a centavos
+        console.log(cid[i][1]);
         totalAmount += cid[i][1];
+        console.log(totalAmount);
     }
     return Number(totalAmount.toFixed(2)); // Convertir a número después de limitar a dos decimales
 }
 
+const cidExample = [
+    ["PENNY", 1.01],
+    ["NICKEL", 2.05],
+    ["DIME", 3.1],
+    ["QUARTER", 4.25],
+    ["ONE", 90],
+    ["FIVE", 55],
+    ["TEN", 20],
+    ["TWENTY", 60],
+    ["ONE HUNDRED", 100] ];
 
+    checkAmount(cidExample);
 
 //2. Calculate the change to give back
 function checkTotalChange(price, cash) {

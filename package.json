@@ -1,5 +1,6 @@
 {
+  "author": { "name": "Marcelinne" },
   "devDependencies": {
-    "jest": "^29.7.0"
+    "jest": "^28.1.3"
   }
 }

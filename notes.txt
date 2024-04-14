@@ -1,0 +1,23 @@
+Un solo metodo que traiga la info de todos los repos
+
+Funciones puras para hacer la lista de datos
+
+lista de datos ---> Lista , dato , etc con funcion pura + Testing
+
+Utilizar map , filter , etc para los datos
+
+
+-------------------------------------------
+
+Al trabajar solo en un reporitorio hacer un commit por cada
+
+Si trabajo con otras personas esperar al pull request para hacer algo
+Trabajo en una version anterior , problemas.
+
+-------------------------------------------
+Ideal :
+
+Rama Main
+Rama con el FEature --- Numero de Ticket
+Termina el feature y se une a Main
+donde se une a main sale otra rama con el numero de ticket

@@ -1,3 +1,4 @@
+const fs = require('fs');
 class GitHubClient {
     constructor() {
         this.token = process.env.GITHUB_TOKEN;;
@@ -31,50 +32,46 @@ class GitHubClient {
         }
     }
 
+//Create get Repositories info by organization
 
-    async getTopRepositories(orgName, count = 5) {
-        if (!this.token) {
-            console.error('No se ha proporcionado un token de acceso. Configure la variable de entorno GITHUB_TOKEN.');
-            return [];
-        }
-
-        try {
-            const response = await fetch(`${this.baseUrl}/orgs/${orgName}/repos?per_page=${count}&sort=stars&direction=desc`, {
-                //No traer la data con sorting , solo la data de los repositorios para poner en los mocks 
-                // Y probar el metodo de getTopRepositories
-                headers: {
-                    Authorization: `token ${this.token}`
-                }
+    async getRepositories(orgName , baseUrl){
+        try{
+            const response= await fetch (baseUrl, {
+                header: {
+                    Authorization: 'token ${this.authToken}',
+                },
             });
-
-            if (response.ok) {
-                const data = await response.json();
-                return data;
-            } else {
-                console.error('Error al obtener los mejores repositorios:', response.statusText);
-                return [];
-            }
-        } catch (error) {
-            console.error('Error al obtener los mejores repositorios:', error.message);
-            return [];
+            return await response.json();
+        }catch(error){
+            console.error('Error fetching repositories:', error.message)
+            return null;
         }
     }
 
+
+    saveJsonToFile(data, filename) {
+        const jsonData = JSON.stringify(data, null, 2); // Formatear con sangría de 2 espacios
+        fs.writeFileSync(filename, jsonData);
+        console.log(`JSON data saved to ${filename}`);
+    }
+
+
+
 }
 
+githubClient = new GitHubClient();
+githubClient.testConnection()
+
+const orgName = 'stackbuilders';
+const baseUrl = `https://api.github.com/orgs/${orgName}/repos`;
+
+githubClient.getRepositories(orgName,baseUrl)
+    .then (repositories => {
+        if (repositories){
+            console.log('Repositories:');
+            githubClient.saveJsonToFile(repositories,'repositories.json');
+        }
+    })
+    .catch(error => console.error('Error:', error));
 
 
-
-
-
-const githubClient = new GitHubClient();
-githubClient.testConnection();
-const topRepos = githubClient.getTopRepositories('stackbuilders')
-.then(topRepos => {
-    console.log(topRepos);
-})
-.catch(error => {
-    console.error('Error al obtener los mejores repositorios:', error);
-});
-
-console.log(topRepos);

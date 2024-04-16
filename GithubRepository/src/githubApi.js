@@ -56,13 +56,4 @@ const baseUrlOrg = `https://api.github.com/orgs/${org_Name}/repos`;
     }
 
 
-
-    testConnection(baseUrl, token)
-    .then(connectionSuccessful => {
-        if (connectionSuccessful) {
-            console.log('La conexión fue exitosa.');
-        } else {
-            console.log('La conexión falló.');
-        }
-    });
-
+    module.exports = { testConnection };

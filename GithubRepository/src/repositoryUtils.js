@@ -12,10 +12,17 @@ function getLastFiveUpdatedRepositories(repositories) {
     return sortedRepositories.slice(0, 5);
 }
 
+function sumOfAllRepositoryStars(repositories) {
+    // Sumar todas las estrellas de los repositorios
+    const totalStars = repositories.reduce((accumulator, repo) => accumulator + repo.stargazers_count, 0);
+
+    return totalStars;
+}
 
 module.exports = {
     filterRepositoriesWithMoreThanFiveStars,
-    getLastFiveUpdatedRepositories
+    getLastFiveUpdatedRepositories,
+    sumOfAllRepositoryStars
 };
 
 

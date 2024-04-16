@@ -56,4 +56,4 @@ const baseUrlOrg = `https://api.github.com/orgs/${org_Name}/repos`;
     }
 
 
-    module.exports = { testConnection };
+    module.exports = { testConnection, saveJsonToFile,getRepositories };

@@ -1,4 +1,6 @@
 const { testConnection, getRepositories,saveJsonToFile } = require('./githubApi');
+const {ilterRepositoriesWithMoreThanFiveStars, getLastFiveUpdatedRepositories, sumOfAllRepositoryStars, filterRepositoriesWithMoreThanFiveStars }= require('./repositoryUtils');
+const fs = require('fs')
 
 const baseUrl = 'https://api.github.com';
 const token = process.env.GITHUB_TOKEN;
@@ -25,3 +27,10 @@ testConnection(baseUrl, token)
         }
     })
     .catch(error => console.error('Error fetching repositories:', error.message));
+
+    const repositories_psth='resume_repositories.json'
+    const rawData = fs.readFileSync(repositories_psth, 'utf-8')
+    const repositories = JSON.parse(rawData);
+
+    const filteredRepositories = filterRepositoriesWithMoreThanFiveStars(repositories);
+    console.log(filteredRepositories);

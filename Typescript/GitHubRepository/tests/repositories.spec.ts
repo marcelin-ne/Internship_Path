@@ -1,4 +1,4 @@
-import { validateRepositories } from '../repository';
+import { validateRepositories , filterRepositoriesWithMoreThanFiveStars } from '../repository';
 
 describe('Validate Repositories', () => {
     const validRepositories = [
@@ -46,5 +46,75 @@ describe('Validate Repositories', () => {
     });
     it('should return false when no repositories are provided', () => {
         expect(validateRepositories([])).toBe(false);
+    });
+});
+
+
+// Pruebas unitarias
+
+describe('filterRepositoriesWithMoreThanFiveStars', () => {
+    it('Debería devolver una lista vacía si no hay repositorios con más de 5 estrellas', () => {
+        const repositories = [
+            {
+                id: 1,
+                name: 'Repo 1',
+                updated_at: '2017-05-21T04:36:44Z',
+                stargazers_count: 5
+            },
+            {
+                id: 2,
+                name: 'Repo 2',
+                updated_at: '2014-12-15T12:18:33Z',
+                stargazers_count: 3
+            },
+            {
+                id: 3,
+                name: 'Repo 3',
+                updated_at: '2023-04-22T10:00:00Z',
+                stargazers_count: 4
+            }
+        ];
+        expect(filterRepositoriesWithMoreThanFiveStars(repositories)).toEqual([]);
+    });
+
+    it('Debería devolver una lista con los repositorios que tienen más de 5 estrellas', () => {
+        const repositories = [
+            {
+                id: 1,
+                name: 'Repo 1',
+                updated_at: '2017-05-21T04:36:44Z',
+                stargazers_count: 6
+            },
+            {
+                id: 2,
+                name: 'Repo 2',
+                updated_at: '2014-12-15T12:18:33Z',
+                stargazers_count: 10
+            },
+            {
+                id: 3,
+                name: 'Repo 3',
+                updated_at: '2023-04-22T10:00:00Z',
+                stargazers_count: 4
+            }
+        ];
+        expect(filterRepositoriesWithMoreThanFiveStars(repositories)).toEqual([
+            {
+                id: 1,
+                name: 'Repo 1',
+                updated_at: '2017-05-21T04:36:44Z',
+                stargazers_count: 6
+            },
+            {
+                id: 2,
+                name: 'Repo 2',
+                updated_at: '2014-12-15T12:18:33Z',
+                stargazers_count: 10
+            }
+        ]);
+    });
+
+    it('Debería devolver una lista vacía si no se proporciona ningún repositorio', () => {
+        expect(filterRepositoriesWithMoreThanFiveStars([])).toEqual([]);
     });
 });

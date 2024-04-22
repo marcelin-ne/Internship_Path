@@ -1,4 +1,4 @@
-import fs from 'fs';
+
 
 interface Repository {
     id: number;
@@ -24,4 +24,9 @@ export function validateRepositories(repositories: any[]): boolean {
     });
     return isValid;
 }
+
+export function filterRepositoriesWithMoreThanFiveStars(repositories: any[]): any[] {
+    return repositories.filter((repo) => repo.stargazers_count > 5);
+}
+
 

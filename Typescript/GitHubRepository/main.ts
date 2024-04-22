@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { filterRepositoriesWithMoreThanFiveStars, getLastFiveUpdatedRepositories, validateRepositories } from './repository';
+import { filterRepositoriesWithMoreThanFiveStars, getLastFiveUpdatedRepositories, sumOfAllRepositoryStars, validateRepositories } from './repository';
 // const fs = require('fs');
 // import fs from 'fs'; This not work ask why
 
@@ -25,3 +25,5 @@ console.log (" Last Five Update Repositories") ;
 const last_Update = getLastFiveUpdatedRepositories(repositories);
 console.log(last_Update);
 
+const sum_Stars= sumOfAllRepositoryStars(repositories);
+console.log("Sum of all Repositories stars: ", sum_Stars);

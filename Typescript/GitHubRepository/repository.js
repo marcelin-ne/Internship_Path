@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getLastFiveUpdatedRepositories = exports.filterRepositoriesWithMoreThanFiveStars = exports.validateRepositories = void 0;
+exports.sumOfAllRepositoryStars = exports.getLastFiveUpdatedRepositories = exports.filterRepositoriesWithMoreThanFiveStars = exports.validateRepositories = void 0;
 function validateRepositories(repositories) {
     if (repositories.length === 0) {
         return false;
@@ -27,3 +27,8 @@ function getLastFiveUpdatedRepositories(repositories) {
     return sortedRepositories.slice(0, 5);
 }
 exports.getLastFiveUpdatedRepositories = getLastFiveUpdatedRepositories;
+function sumOfAllRepositoryStars(repositories) {
+    var totalStars = repositories.reduce(function (accumulator, repo) { return accumulator + repo.stargazers_count; }, 0);
+    return totalStars;
+}
+exports.sumOfAllRepositoryStars = sumOfAllRepositoryStars;

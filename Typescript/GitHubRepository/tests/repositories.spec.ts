@@ -1,4 +1,4 @@
-import { validateRepositories , filterRepositoriesWithMoreThanFiveStars , getLastFiveUpdatedRepositories } from '../repository';
+import { validateRepositories , filterRepositoriesWithMoreThanFiveStars , getLastFiveUpdatedRepositories , sumOfAllRepositoryStars } from '../repository';
 
 describe('Validate Repositories', () => {
     const validRepositories = [
@@ -152,4 +152,31 @@ describe('getLastFiveUpdatedRepositories', () => {
 
         expect(lastFiveUpdatedRepositories).toEqual(repositories);
         });
+});
+
+
+describe('sumOfAllRepositoryStars', () => {
+    test('should return the sum of all repository stars', () => {
+        const repositories = [
+        { id: 1, name: 'repo1', stargazers_count: 10 },
+        { id: 2, name: 'repo2', stargazers_count: 20 },
+        { id: 3, name: 'repo3', stargazers_count: 30 }
+        ];
+
+
+    const totalStars = sumOfAllRepositoryStars(repositories);
+
+
+    expect(totalStars).toBe(10 + 20 + 30);
+    });
+
+    test('should return 0 if there are no repositories', () => {
+
+    const repositories = [];
+
+
+    const totalStars = sumOfAllRepositoryStars(repositories);
+
+    expect(totalStars).toBe(0);
+    });
 });

@@ -1,4 +1,4 @@
-import { validateRepositories , filterRepositoriesWithMoreThanFiveStars } from '../repository';
+import { validateRepositories , filterRepositoriesWithMoreThanFiveStars , getLastFiveUpdatedRepositories } from '../repository';
 
 describe('Validate Repositories', () => {
     const validRepositories = [
@@ -117,4 +117,39 @@ describe('filterRepositoriesWithMoreThanFiveStars', () => {
     it('Debería devolver una lista vacía si no se proporciona ningún repositorio', () => {
         expect(filterRepositoriesWithMoreThanFiveStars([])).toEqual([]);
     });
+});
+
+
+describe('getLastFiveUpdatedRepositories', () => {
+    test('should return the last 5 updated repositories', () => {
+        const repositories = [
+            { id: 1, name: 'repo1', updated_at: '2023-04-01T12:00:00Z' },
+            { id: 2, name: 'repo2', updated_at: '2023-04-02T12:00:00Z' },
+            { id: 3, name: 'repo3', updated_at: '2023-04-03T12:00:00Z' },
+            { id: 4, name: 'repo4', updated_at: '2023-04-04T12:00:00Z' },
+            { id: 5, name: 'repo5', updated_at: '2023-04-05T12:00:00Z' },
+            { id: 6, name: 'repo6', updated_at: '2023-04-06T12:00:00Z' }
+        ];
+        const lastFiveUpdatedRepositories = getLastFiveUpdatedRepositories(repositories);
+
+    expect(lastFiveUpdatedRepositories).toEqual([
+        { id: 6, name: 'repo6', updated_at: '2023-04-06T12:00:00Z' },
+        { id: 5, name: 'repo5', updated_at: '2023-04-05T12:00:00Z' },
+        { id: 4, name: 'repo4', updated_at: '2023-04-04T12:00:00Z' },
+        { id: 3, name: 'repo3', updated_at: '2023-04-03T12:00:00Z' },
+        { id: 2, name: 'repo2', updated_at: '2023-04-02T12:00:00Z' }
+        ]);
+    });
+
+    test('should return all repositories if there are less than 5', () => {
+            const repositories = [
+            { id: 1, name: 'repo1', updated_at: '2023-04-01T12:00:00Z' },
+            { id: 2, name: 'repo2', updated_at: '2023-04-02T12:00:00Z' },
+            { id: 3, name: 'repo3', updated_at: '2023-04-03T12:00:00Z' }
+            ];
+
+        const lastFiveUpdatedRepositories = getLastFiveUpdatedRepositories(repositories);
+
+        expect(lastFiveUpdatedRepositories).toEqual(repositories);
+        });
 });

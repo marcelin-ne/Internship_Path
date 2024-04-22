@@ -7,7 +7,7 @@ var repository_1 = require("./repository");
 var repositories_psth = 'resume_repositories.json';
 var rawData = fs.readFileSync(repositories_psth, 'utf-8');
 var repositories = JSON.parse(rawData);
-console.log("repositories:", repositories);
+// console.log("repositories:" , repositories);
 // 1.l Validate each reapository repositories in repositories
 //!Ask
 // Object.values(repositories).map((repo: any) => {
@@ -17,3 +17,6 @@ console.log("repositories:", repositories);
 console.log("Repositories with more than 5 stars");
 var filter_Repositories = (0, repository_1.filterRepositoriesWithMoreThanFiveStars)(repositories);
 console.log(filter_Repositories);
+console.log(" Last Five Update Repositories");
+var last_Update = (0, repository_1.getLastFiveUpdatedRepositories)(repositories);
+console.log(last_Update);

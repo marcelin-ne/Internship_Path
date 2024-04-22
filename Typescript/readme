@@ -1,0 +1,15 @@
+This Pet Project Module 4
+
+Use typescript to retrieve data from Github's Stack Builders organization
+Using the public API
+
+The application should show:
+    * Repositories with more than 5 stars
+    * Last 5 updated repositories
+    * Sum of all repository stars
+    * List of top 5 repositories with more stars
+    * List all repositories alphabetically and remove all respositories that start with "h"
+Considerations:
+    * Each functionality can be a function
+    * Try to make pure functions whenever possible
+    * include unit test and test coverage

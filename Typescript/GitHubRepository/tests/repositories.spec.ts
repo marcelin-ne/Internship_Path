@@ -1,4 +1,8 @@
-import { validateRepositories , filterRepositoriesWithMoreThanFiveStars , getLastFiveUpdatedRepositories , sumOfAllRepositoryStars } from '../repository';
+import { validateRepositories , filterRepositoriesWithMoreThanFiveStars , 
+    getLastFiveUpdatedRepositories ,
+     sumOfAllRepositoryStars,
+    getTopFiveRepositoriesByStars,
+    } from '../repository';
 
 describe('Validate Repositories', () => {
     const validRepositories = [
@@ -180,3 +184,128 @@ describe('sumOfAllRepositoryStars', () => {
     expect(totalStars).toBe(0);
     });
 });
+
+
+describe('getTopFiveRepositoriesByStars', () => {
+    it('Debería devolver una lista vacía si no se proporciona ningún repositorio', () => {
+        expect(getTopFiveRepositoriesByStars([])).toEqual([]);
+    });
+
+    it('Debería devolver una lista con los top 5 repositorios que tienen más estrellas', () => {
+        const repositories = [
+            {
+                id: 1,
+                name: 'Repo 1',
+                updated_at: '2017-05-21T04:36:44Z',
+                stargazers_count: 10
+            },
+            {
+                id: 2,
+                name: 'Repo 2',
+                updated_at: '2014-12-15T12:18:33Z',
+                stargazers_count: 20
+            },
+            {
+                id: 3,
+                name: 'Repo 3',
+                updated_at: '2023-04-22T10:00:00Z',
+                stargazers_count: 15
+            },
+            {
+                id: 4,
+                name: 'Repo 4',
+                updated_at: '2018-01-10T08:30:00Z',
+                stargazers_count: 5
+            },
+            {
+                id: 5,
+                name: 'Repo 5',
+                updated_at: '2022-11-30T14:45:00Z',
+                stargazers_count: 25
+            },
+            {
+                id: 6,
+                name: 'Repo 6',
+                updated_at: '2020-06-05T09:20:00Z',
+                stargazers_count: 30
+            }
+        ];
+        expect(getTopFiveRepositoriesByStars(repositories)).toEqual([
+            {
+                id: 6,
+                name: 'Repo 6',
+                updated_at: '2020-06-05T09:20:00Z',
+                stargazers_count: 30
+            },
+            {
+                id: 5,
+                name: 'Repo 5',
+                updated_at: '2022-11-30T14:45:00Z',
+                stargazers_count: 25
+            },
+            {
+                id: 2,
+                name: 'Repo 2',
+                updated_at: '2014-12-15T12:18:33Z',
+                stargazers_count: 20
+            },
+            {
+                id: 3,
+                name: 'Repo 3',
+                updated_at: '2023-04-22T10:00:00Z',
+                stargazers_count: 15
+            },
+            {
+                id: 1,
+                name: 'Repo 1',
+                updated_at: '2017-05-21T04:36:44Z',
+                stargazers_count: 10
+            }
+        ]);
+    });
+
+    it('Debería devolver una lista con los top 5 repositorios cuando hay menos de 5 repositorios', () => {
+        const repositories = [
+            {
+                id: 1,
+                name: 'Repo 1',
+                updated_at: '2017-05-21T04:36:44Z',
+                stargazers_count: 10
+            },
+            {
+                id: 2,
+                name: 'Repo 2',
+                updated_at: '2014-12-15T12:18:33Z',
+                stargazers_count: 20
+            },
+            {
+                id: 3,
+                name: 'Repo 3',
+                updated_at: '2023-04-22T10:00:00Z',
+                stargazers_count: 15
+            }
+        ];
+        expect(getTopFiveRepositoriesByStars(repositories)).toEqual([
+            {
+                id: 2,
+                name: 'Repo 2',
+                updated_at: '2014-12-15T12:18:33Z',
+                stargazers_count: 20
+            },
+            {
+                id: 3,
+                name: 'Repo 3',
+                updated_at: '2023-04-22T10:00:00Z',
+                stargazers_count: 15
+            },
+            {
+                id: 1,
+                name: 'Repo 1',
+                updated_at: '2017-05-21T04:36:44Z',
+                stargazers_count: 10
+            }
+        ]);
+    });
+});
+
+

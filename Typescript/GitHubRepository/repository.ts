@@ -41,3 +41,7 @@ export function sumOfAllRepositoryStars(repositories: any[]): number {
     return totalStars;
 }
 
+export function getTopFiveRepositoriesByStars(repositories: any[]): any[] {
+    const sortedRepositories = repositories.sort((a, b) => b.stargazers_count - a.stargazers_count);
+    return sortedRepositories.slice(0, 5);
+}

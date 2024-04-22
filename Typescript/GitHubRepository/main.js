@@ -22,3 +22,5 @@ var last_Update = (0, repository_1.getLastFiveUpdatedRepositories)(repositories)
 console.log(last_Update);
 var sum_Stars = (0, repository_1.sumOfAllRepositoryStars)(repositories);
 console.log("Sum of all Repositories stars: ", sum_Stars);
+var top_Five = (0, repository_1.getTopFiveRepositoriesByStars)(repositories);
+console.log("Top 5 Repositories by Stars", top_Five);

@@ -45,3 +45,9 @@ export function getTopFiveRepositoriesByStars(repositories: any[]): any[] {
     const sortedRepositories = repositories.sort((a, b) => b.stargazers_count - a.stargazers_count);
     return sortedRepositories.slice(0, 5);
 }
+
+export function listRepositoriesAlphabeticallyWithoutH(repositories: any[]): any[] {
+    const filteredRepositories = repositories.filter(repo => !repo.name.toLowerCase().startsWith('h'));
+    const sortedRepositories = filteredRepositories.sort((a, b) => a.name.localeCompare(b.name));
+    return sortedRepositories;
+}

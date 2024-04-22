@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTopFiveRepositoriesByStars = exports.sumOfAllRepositoryStars = exports.getLastFiveUpdatedRepositories = exports.filterRepositoriesWithMoreThanFiveStars = exports.validateRepositories = void 0;
+exports.listRepositoriesAlphabeticallyWithoutH = exports.getTopFiveRepositoriesByStars = exports.sumOfAllRepositoryStars = exports.getLastFiveUpdatedRepositories = exports.filterRepositoriesWithMoreThanFiveStars = exports.validateRepositories = void 0;
 function validateRepositories(repositories) {
     if (repositories.length === 0) {
         return false;
@@ -37,3 +37,9 @@ function getTopFiveRepositoriesByStars(repositories) {
     return sortedRepositories.slice(0, 5);
 }
 exports.getTopFiveRepositoriesByStars = getTopFiveRepositoriesByStars;
+function listRepositoriesAlphabeticallyWithoutH(repositories) {
+    var filteredRepositories = repositories.filter(function (repo) { return !repo.name.toLowerCase().startsWith('h'); });
+    var sortedRepositories = filteredRepositories.sort(function (a, b) { return a.name.localeCompare(b.name); });
+    return sortedRepositories;
+}
+exports.listRepositoriesAlphabeticallyWithoutH = listRepositoriesAlphabeticallyWithoutH;

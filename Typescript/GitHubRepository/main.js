@@ -24,3 +24,5 @@ var sum_Stars = (0, repository_1.sumOfAllRepositoryStars)(repositories);
 console.log("Sum of all Repositories stars: ", sum_Stars);
 var top_Five = (0, repository_1.getTopFiveRepositoriesByStars)(repositories);
 console.log("Top 5 Repositories by Stars", top_Five);
+var sorted_repositories = (0, repository_1.listRepositoriesAlphabeticallyWithoutH)(repositories);
+console.log("Repositories with out a H ", sorted_repositories);

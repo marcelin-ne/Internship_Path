@@ -1,7 +1,7 @@
 import { validateRepositories , filterRepositoriesWithMoreThanFiveStars , 
     getLastFiveUpdatedRepositories ,
      sumOfAllRepositoryStars,
-    getTopFiveRepositoriesByStars,
+    getTopFiveRepositoriesByStars, listRepositoriesAlphabeticallyWithoutH,
     } from '../repository';
 
 describe('Validate Repositories', () => {
@@ -309,3 +309,111 @@ describe('getTopFiveRepositoriesByStars', () => {
 });
 
 
+describe('listRepositoriesAlphabeticallyWithoutH', () => {
+    it('Debería devolver una lista vacía si no se proporciona ningún repositorio', () => {
+        expect(listRepositoriesAlphabeticallyWithoutH([])).toEqual([]);
+    });
+
+    it('Debería devolver una lista de repositorios en orden alfabético sin repositorios que comienzan con "h"', () => {
+        const repositories = [
+            {
+                id: 1,
+                name: 'pivotal_planning_poker',
+                updated_at: '2017-05-21T04:36:44Z',
+                stargazers_count: 6
+            },
+            {
+                id: 2,
+                name: 'hackchange_demo',
+                updated_at: '2014-12-15T12:18:33Z',
+                stargazers_count: 0
+            },
+            {
+                id: 3,
+                name: 'learn-javascript',
+                updated_at: '2023-04-22T10:00:00Z',
+                stargazers_count: 4
+            },
+            {
+                id: 4,
+                name: 'happy_repo',
+                updated_at: '2018-01-10T08:30:00Z',
+                stargazers_count: 5
+            },
+            {
+                id: 5,
+                name: 'hello_world',
+                updated_at: '2022-11-30T14:45:00Z',
+                stargazers_count: 25
+            },
+            {
+                id: 6,
+                name: 'javascript_library',
+                updated_at: '2020-06-05T09:20:00Z',
+                stargazers_count: 30
+            }
+        ];
+        expect(listRepositoriesAlphabeticallyWithoutH(repositories)).toEqual([
+            {
+                id: 6,
+                name: 'javascript_library',
+                updated_at: '2020-06-05T09:20:00Z',
+                stargazers_count: 30
+            },
+            {
+                id: 3,
+                name: 'learn-javascript',
+                updated_at: '2023-04-22T10:00:00Z',
+                stargazers_count: 4
+            },
+            {
+                id: 1,
+                name: 'pivotal_planning_poker',
+                updated_at: '2017-05-21T04:36:44Z',
+                stargazers_count: 6
+            }
+        ]);
+    });
+
+    it('Debería devolver una lista de repositorios en orden alfabético sin repositorios que comienzan con "h" cuando todos los repositorios comienzan con "h"', () => {
+        const repositories = [
+            {
+                id: 1,
+                name: 'happy_repo',
+                updated_at: '2017-05-21T04:36:44Z',
+                stargazers_count: 6
+            },
+            {
+                id: 2,
+                name: 'hello_world',
+                updated_at: '2014-12-15T12:18:33Z',
+                stargazers_count: 0
+            },
+            {
+                id: 3,
+                name: 'happy_repo_2',
+                updated_at: '2023-04-22T10:00:00Z',
+                stargazers_count: 4
+            },
+            {
+                id: 4,
+                name: 'happy_repo_3',
+                updated_at: '2018-01-10T08:30:00Z',
+                stargazers_count: 5
+            },
+            {
+                id: 5,
+                name: 'happy_repo_4',
+                updated_at: '2022-11-30T14:45:00Z',
+                stargazers_count: 25
+            },
+            {
+                id: 6,
+                name: 'happy_repo_5',
+                updated_at: '2020-06-05T09:20:00Z',
+                stargazers_count: 30
+            }
+        ];
+        expect(listRepositoriesAlphabeticallyWithoutH(repositories)).toEqual([]);
+    });
+});

@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1176286,
+    "name": "pivotal_planning_poker",
+    "updated_at": "2017-05-21T04:36:44Z",
+    "stargazers_count": 6
+  },
+  {
+    "id": 1493846,
+    "name": "hackchange_demo",
+    "updated_at": "2014-12-15T12:18:33Z",
+    "stargazers_count": 0
+  },
+  {
+    "id": 1673657,
+    "name": "propel",
+    "updated_at": "2022-08-26T19:59:55Z",
+    "stargazers_count": 8
+  },
+  {
+    "id": 3148847,
+    "name": "stub_shell",
+    "updated_at": "2017-06-05T19:58:59Z",
+    "stargazers_count": 7
+  },
+  {
+    "id": 3434667,
+    "name": "pull_panel",
+    "updated_at": "2014-05-05T05:03:07Z",
+    "stargazers_count": 2
+  },
+  {
+    "id": 3631804,
+    "name": "hubot",
+    "updated_at": "2022-02-06T02:13:28Z",
+    "stargazers_count": 2
+  },
+  {
+    "id": 3955597,
+    "name": "railblazer",
+    "updated_at": "2019-08-13T15:00:22Z",
+    "stargazers_count": 18
+  },
+  {
+    "id": 7785888,
+    "name": "conway-cljs",
+    "updated_at": "2013-10-02T06:10:12Z",
+    "stargazers_count": 1
+  },
+  {
+    "id": 16866406,
+    "name": "twitter-feed",
+    "updated_at": "2023-08-30T17:28:11Z",
+    "stargazers_count": 17
+  },
+  {
+    "id": 17161901,
+    "name": "inflections-hs",
+    "updated_at": "2023-10-24T13:27:31Z",
+    "stargazers_count": 36
+  },
+  {
+    "id": 19701230,
+    "name": "haskell-deploy",
+    "updated_at": "2015-06-14T12:33:25Z",
+    "stargazers_count": 1
+  },
+  {
+    "id": 19947816,
+    "name": "valid_data",
+    "updated_at": "2019-12-19T01:18:06Z",
+    "stargazers_count": 5
+  },
+  {
+    "id": 20001143,
+    "name": "hapistrano",
+    "updated_at": "2024-02-05T01:14:40Z",
+    "stargazers_count": 98
+  },
+  {
+    "id": 23751510,
+    "name": "token-bucket",
+    "updated_at": "2019-12-05T06:33:34Z",
+    "stargazers_count": 2
+  },
+  {
+    "id": 24041218,
+    "name": "corasick-park",
+    "updated_at": "2019-12-05T06:33:35Z",
+    "stargazers_count": 1
+  },
+  {
+    "id": 25698483,
+    "name": "weak-strong",
+    "updated_at": "2018-06-13T19:22:09Z",
+    "stargazers_count": 2
+  },
+  {
+    "id": 27134978,
+    "name": "just-haskell",
+    "updated_at": "2022-02-06T02:16:26Z",
+    "stargazers_count": 0
+  },
+  {
+    "id": 28968951,
+    "name": "reverse",
+    "updated_at": "2015-06-04T16:33:36Z",
+    "stargazers_count": 0
+  },
+  {
+    "id": 29714233,
+    "name": "passenger-check",
+    "updated_at": "2019-12-05T06:33:47Z",
+    "stargazers_count": 2
+  },
+  {
+    "id": 29879491,
+    "name": "keyword-args",
+    "updated_at": "2019-12-05T06:33:48Z",
+    "stargazers_count": 1
+  },
+  {
+    "id": 29879757,
+    "name": "sshd-lint",
+    "updated_at": "2022-11-08T19:11:50Z",
+    "stargazers_count": 7
+  },
+  {
+    "id": 30417104,
+    "name": "octohat",
+    "updated_at": "2020-07-17T16:28:56Z",
+    "stargazers_count": 17
+  },
+  {
+    "id": 30421562,
+    "name": "atomic-write",
+    "updated_at": "2023-11-21T13:34:42Z",
+    "stargazers_count": 18
+  },
+  {
+    "id": 30470561,
+    "name": "dotenv-hs",
+    "updated_at": "2024-04-12T15:54:03Z",
+    "stargazers_count": 63
+  },
+  {
+    "id": 31037228,
+    "name": "openssh-github-keys",
+    "updated_at": "2024-03-25T02:24:59Z",
+    "stargazers_count": 21
+  },
+  {
+    "id": 31668445,
+    "name": "pattern-matching-wot",
+    "updated_at": "2022-02-06T02:20:49Z",
+    "stargazers_count": 0
+  },
+  {
+    "id": 31750192,
+    "name": "dbcleaner",
+    "updated_at": "2023-08-30T15:06:52Z",
+    "stargazers_count": 5
+  },
+  {
+    "id": 31795860,
+    "name": "agdernoon",
+    "updated_at": "2015-03-25T23:51:26Z",
+    "stargazers_count": 0
+  },
+  {
+    "id": 32419213,
+    "name": "campfire_export",
+    "updated_at": "2020-08-28T12:00:43Z",
+    "stargazers_count": 2
+  },
+  {
+    "id": 32827391,
+    "name": "parseerror-eq",
+    "updated_at": "2019-12-05T06:33:54Z",
+    "stargazers_count": 1
+  }
+]

@@ -1,80 +1,59 @@
-class GitHubClient {
-    constructor() {
-        this.token = process.env.GITHUB_TOKEN;;
-        this.baseUrl = 'https://api.github.com';
+const fs = require('fs');
+
+const token = process.env.GITHUB_TOKEN;
+const baseUrl= 'https://api.github.com';
+const org_Name = 'stackbuilders';
+const baseUrlOrg = `https://api.github.com/orgs/${org_Name}/repos`;
+
+    async function testConnection(token) {
+    if (!token) {
+        console.error('No se ha proporcionado un token de acceso. Configure la variable de entorno GITHUB_TOKEN.');
+        return false;
     }
 
-    async testConnection() {
-        if (!this.token) {
-            console.error('No se ha proporcionado un token de acceso. Configure la variable de entorno GITHUB_TOKEN.');
+    try {
+        const response = await fetch(`${baseUrl}/user`, {
+            headers: {
+                Authorization: `token ${token}`
+            }
+        });
+
+        if (response.ok) {
+            const userData = await response.json();
+            console.log('Conexión exitosa. Bienvenido, ' + userData.login);
+            return true;
+        } else {
+            console.error('Error de conexión:', response.statusText);
             return false;
         }
-
-        try {
-            const response = await fetch(`${this.baseUrl}/user`, {
-                headers: {
-                    Authorization: `token ${this.token}`
-                }
-            });
-
-            if (response.ok) {
-                const userData = await response.json();
-                console.log('Conexión exitosa. Bienvenido, ' + userData.login);
-                return true;
-            } else {
-                console.error('Error de conexión:', response.statusText);
-                return false;
-            }
-        } catch (error) {
-            console.error('Error de conexión:', error.message);
-            return false;
-        }
+    } catch (error) {
+        console.error('Error de conexión:', error.message);
+        return false;
     }
-
-
-    async getTopRepositories(orgName, count = 5) {
-        if (!this.token) {
-            console.error('No se ha proporcionado un token de acceso. Configure la variable de entorno GITHUB_TOKEN.');
-            return [];
-        }
-
-        try {
-            const response = await fetch(`${this.baseUrl}/orgs/${orgName}/repos?per_page=${count}&sort=stars&direction=desc`, {
-                //No traer la data con sorting , solo la data de los repositorios para poner en los mocks 
-                // Y probar el metodo de getTopRepositories
-                headers: {
-                    Authorization: `token ${this.token}`
-                }
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                return data;
-            } else {
-                console.error('Error al obtener los mejores repositorios:', response.statusText);
-                return [];
-            }
-        } catch (error) {
-            console.error('Error al obtener los mejores repositorios:', error.message);
-            return [];
-        }
-    }
-
 }
 
+//Create get Repositories info by organization
+
+    async  function getRepositories(org_Name , baseUrlOrg){
+        try{
+            const response= await fetch (baseUrlOrg, {
+                header: {
+                    Authorization: 'token ${authToken}',
+                },
+            });
+            return await response.json();
+        }catch(error){
+            console.error('Error fetching repositories:', error.message)
+            return null;
+        }
+    }
 
 
+    function saveJsonToFile(data, filename) {
+        const jsonData = JSON.stringify(data, null, 2); // Formatear con sangría de 2 espacios
+        fs.writeFileSync(filename, jsonData);
+        console.log(`JSON data saved to ${filename}`);
+    }
 
 
-
-const githubClient = new GitHubClient();
-githubClient.testConnection();
-const topRepos = githubClient.getTopRepositories('stackbuilders')
-.then(topRepos => {
-    console.log(topRepos);
-})
-.catch(error => {
-    console.error('Error al obtener los mejores repositorios:', error);
-});
-
-console.log(topRepos);
+    module.exports = { testConnection, saveJsonToFile,getRepositories };
